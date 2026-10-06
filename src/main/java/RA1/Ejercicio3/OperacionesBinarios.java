@@ -143,8 +143,27 @@ public class OperacionesBinarios {
         }
     }
 
-    public void empleadoNombreMasLargo() {
-
+    public void mostrarEmpleadoMasLargo() {
+        Empleado empleadoLargo = null;
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
+            while (true) {
+                String nombre = in.readUTF();
+                String apellido = in.readUTF();
+                int numerohijos = in.readInt();
+                Empleado emp = new Empleado(nombre, apellido, numerohijos);
+                int longitudEmpleado = nombre.length() + apellido.length();
+                int longitudEmpleadoLargo = empleadoLargo != null ? empleadoLargo.getNombre().length() + empleadoLargo.getApellido().length() : 0;
+                if (empleadoLargo == null || longitudEmpleado > longitudEmpleadoLargo) {
+                    empleadoLargo = emp;
+                }
+            }
+        } catch (EOFException e) { //salta cuando ha terminado de leer el fichero
+            if (empleadoLargo != null) {
+                empleadoLargo.mostrar();
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero empleados: " + e.getMessage());
+        }
     }
 
     public void empleadosConMasDeDosHijos() {
