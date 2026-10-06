@@ -1,13 +1,9 @@
 package RA1.Ejercicio3;
 
 public static void main(String[] args) {
-
     Scanner sc = new Scanner(System.in);
-
     OperacionesBinarios operaciones = new OperacionesBinarios();
-
     int opcion;
-
     do {
         System.out.println("\n==============================");
         System.out.println("       MENÚ PRINCIPAL");

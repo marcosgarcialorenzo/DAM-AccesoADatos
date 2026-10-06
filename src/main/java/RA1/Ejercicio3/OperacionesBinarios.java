@@ -43,12 +43,24 @@ public class OperacionesBinarios {
     }
 
     public void mostrarTodosLibros() {
-
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+            while (true) {
+                String codigo = in.readUTF();
+                String titulo = in.readUTF();
+                String autor = in.readUTF();
+                String editorial = in.readUTF();
+                double precio = in.readDouble();
+                Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
+                libro.mostrar();
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero libros: " + e.getMessage());
+        }
     }
 
 
     public void mostrarLibrosCodigoOPrecio() {
-        try(DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
             while (true) {
                 String codigo = in.readUTF();
                 String titulo = in.readUTF();
@@ -65,8 +77,25 @@ public class OperacionesBinarios {
         }
     }
 
-    public void libroMayorPrecio() {
-
+    public void mostrarLibroMayorPrecio() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+            Libro libro = new Libro(null, null, null, null, 0.0);
+            double mayorPrecio = 0.0;
+            while (true) {
+                String codigo = in.readUTF();
+                String titulo = in.readUTF();
+                String autor = in.readUTF();
+                String editorial = in.readUTF();
+                double precio = in.readDouble();
+                if (precio > mayorPrecio) {
+                    mayorPrecio = precio;
+                    libro = new Libro(codigo, titulo, autor, editorial, precio);
+                }
+            }
+            libro.mostrar();
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero libros: " + e.getMessage());
+        }
     }
 
     public void generarFicheroEmpleados() {
@@ -103,7 +132,6 @@ public class OperacionesBinarios {
 
     }
 
-
     public void empleadoNombreMasLargo() {
 
     }
@@ -111,5 +139,4 @@ public class OperacionesBinarios {
     public void empleadosConMasDeDosHijos() {
 
     }
-
 }
