@@ -166,7 +166,19 @@ public class OperacionesBinarios {
         }
     }
 
-    public void empleadosConMasDeDosHijos() {
-
+    public void mostrarEmpleadosMasDeDosHijos() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
+            while (true) {
+                String nombre = in.readUTF();
+                String apellido = in.readUTF();
+                int numerohijos = in.readInt();
+                Empleado emp = new Empleado(nombre, apellido, numerohijos);
+                if (numerohijos > 2) {
+                    emp.mostrar();
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero empleados: " + e.getMessage());
+        }
     }
 }
