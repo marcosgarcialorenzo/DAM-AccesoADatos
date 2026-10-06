@@ -1,13 +1,11 @@
 package RA1.Ejercicio3;
 
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class OperacionesBinarios {
 
-    private static final String FICH_LIBROS = "c:\\FicherosBinarios\\libros1.dat";
-    private static final String FICH_EMPLEADOS = "c:\\FicherosBinarios\\empleados.dat";
+    private static final String FICH_LIBROS = "C:\\Users\\marco\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio3\\FLibros.dat";
+    private static final String FICH_EMPLEADOS = "C:\\Users\\marco\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio3\\FEmpleados.dat";
 
     public void generarFicheroLibros() {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(FICH_LIBROS))) {
@@ -17,7 +15,6 @@ public class OperacionesBinarios {
                     new Libro("0300", "Los asquerosos", "Santiago Lorenzo", "Blackie Books", 19.95),
                     new Libro("0400", "Lo mejor de ir es volver", "Espinosa", "Grijalbo", 17.00),
                     new Libro("1000", "Malaherba", "Jabois", "Alfaguara", 17.00),
-
                     new Libro("0500", "The Emperor of Gladness", "Ocean Vuong", "Penguin Press", 24.50),
                     new Libro("0600", "Fourth Wing", "Rebecca Yarros", "Red Tower Books", 22.00),
                     new Libro("0700", "Onyx Storm", "Rebecca Yarros", "Red Tower Books", 22.00),
@@ -39,9 +36,9 @@ public class OperacionesBinarios {
                 l.escribir(out);
                 l.mostrar();
             }
-            System.out.println("Fichero LIBROS generado correctamente.\n");
+            System.out.println("Fichero LIBROS generado correctamente.");
         } catch (IOException e) {
-            System.out.println("Error generando fichero libros: " + e.getMessage());
+            System.err.println("Error generando fichero libros: " + e.getMessage());
         }
     }
 
@@ -50,8 +47,22 @@ public class OperacionesBinarios {
     }
 
 
-    public void mostrarLibrosprecio17() {
-
+    public void mostrarLibrosCodigoOPrecio() {
+        try(DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+            while (true) {
+                String codigo = in.readUTF();
+                String titulo = in.readUTF();
+                String autor = in.readUTF();
+                String editorial = in.readUTF();
+                double precio = in.readDouble();
+                if (codigo.equals("0100") || precio == 17.00) {
+                    Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
+                    libro.mostrar();
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero libros: " + e.getMessage());
+        }
     }
 
     public void libroMayorPrecio() {
@@ -83,7 +94,7 @@ public class OperacionesBinarios {
             }
             System.out.println("Fichero EMPLEADOS generado correctamente.");
         } catch (IOException e) {
-            System.out.println("Error generando fichero empleados: " + e.getMessage());
+            System.err.println("Error generando fichero empleados: " + e.getMessage());
         }
     }
 
