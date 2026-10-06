@@ -91,7 +91,7 @@ public class OperacionesBinarios {
                     libroMasCaro = libro;
                 }
             }
-        } catch (EOFException e) { //salta cuando a terminado de leer el fichero
+        } catch (EOFException e) { //salta cuando ha terminado de leer el fichero
             if (libroMasCaro != null) {
                 libroMasCaro.mostrar();
             }
@@ -129,9 +129,18 @@ public class OperacionesBinarios {
         }
     }
 
-    public void mostrarEmpleados() {
-
-
+    public void mostrarTodosEmpleados() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
+            while (true) {
+                String nombre = in.readUTF();
+                String apellido = in.readUTF();
+                int numerohijos = in.readInt();
+                Empleado emp = new Empleado(nombre, apellido, numerohijos);
+                emp.mostrar();
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero empleados: " + e.getMessage());
+        }
     }
 
     public void empleadoNombreMasLargo() {
