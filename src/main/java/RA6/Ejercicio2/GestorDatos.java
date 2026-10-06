@@ -50,8 +50,6 @@ public class GestorDatos {
         pedidos.add(new Pedido(10, "Hub USB para Valeria", 2, 10, 10));
     }
 
-    // CLIENTES
-
     public List<Cliente> obtenerClientes() {
         return clientes;
     }
@@ -70,8 +68,6 @@ public class GestorDatos {
         return clientes.stream().anyMatch(c -> c.getId() == id);
     }
 
-    //PRODUCTOS
-
     public List<Producto> obtenerProductos() {
         return productos;
     }
@@ -87,10 +83,8 @@ public class GestorDatos {
     }
 
     private boolean existeProducto(int id) {
-        return  productos.stream().anyMatch(c -> c.getId() == id);
+        return productos.stream().anyMatch(c -> c.getId() == id);
     }
-
-    // PEDIDOS
 
     public List<Pedido> obtenerPedidos() {
         return pedidos;
@@ -111,20 +105,10 @@ public class GestorDatos {
     }
 
     String obtenerNombreCliente(int idCliente) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getId() == idCliente) {
-                return cliente.getNombre();
-            }
-        }
-        return null;
+        return clientes.stream().filter(c -> c.getId() == idCliente).findFirst().get().getNombre();
     }
 
     String obtenerNombreProducto(int idProducto) {
-        for (Producto producto : productos) {
-            if (producto.getId() == idProducto) {
-                return producto.getNombre();
-            }
-        }
-        return null;
+        return productos.stream().filter(p -> p.getId() == idProducto).findFirst().get().getNombre();
     }
 }
