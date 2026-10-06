@@ -52,12 +52,8 @@ public class GestorDatos {
     }
 
     private boolean existeCliente(int id) {
-        for (Cliente c : clientes) {
-            if (c.getId() == id) {
-                return true;
-            }
-        }
-        return false;
+        return clientes.stream()
+                .anyMatch(cliente -> cliente.getId() == id);
     }
 
     public List<Producto> obtenerProductos() {
@@ -75,11 +71,7 @@ public class GestorDatos {
     }
 
     private boolean existeProducto(int id) {
-        for (Producto p : productos) {
-            if (p.getId() == id) {
-                return true;
-            }
-        }
-        return false;
+        return productos.stream()
+                .anyMatch(producto -> producto.getId() == id);
     }
 }
