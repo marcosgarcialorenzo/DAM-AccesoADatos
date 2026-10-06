@@ -78,21 +78,23 @@ public class OperacionesBinarios {
     }
 
     public void mostrarLibroMayorPrecio() {
+        Libro libroMasCaro = null;
         try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
-            Libro libro = new Libro(null, null, null, null, 0.0);
-            double mayorPrecio = 0.0;
             while (true) {
                 String codigo = in.readUTF();
                 String titulo = in.readUTF();
                 String autor = in.readUTF();
                 String editorial = in.readUTF();
                 double precio = in.readDouble();
-                if (precio > mayorPrecio) {
-                    mayorPrecio = precio;
-                    libro = new Libro(codigo, titulo, autor, editorial, precio);
+                Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
+                if (libroMasCaro == null || precio > libroMasCaro.getPrecio()) {
+                    libroMasCaro = libro;
                 }
             }
-            libro.mostrar();
+        } catch (EOFException e) {
+            if (libroMasCaro != null) {
+                libroMasCaro.mostrar();
+            }
         } catch (IOException e) {
             System.err.println("Error leyendo fichero libros: " + e.getMessage());
         }
