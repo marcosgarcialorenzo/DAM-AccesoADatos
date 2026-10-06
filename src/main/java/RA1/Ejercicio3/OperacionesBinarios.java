@@ -53,6 +53,7 @@ public class OperacionesBinarios {
                 Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
                 libro.mostrar();
             }
+        } catch (EOFException e) {
         } catch (IOException e) {
             System.err.println("Error leyendo fichero libros: " + e.getMessage());
         }
