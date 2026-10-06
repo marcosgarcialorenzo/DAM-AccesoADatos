@@ -1,6 +1,8 @@
 package RA1.Ejercicio3;
 
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class OperacionesBinarios {
 
@@ -9,7 +11,6 @@ public class OperacionesBinarios {
 
     public void generarFicheroLibros() {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(FICH_LIBROS))) {
-
             Libro[] lista = {
                     new Libro("0100", "Largo Pétalo de Mar", "Allende", "P&J", 21.76),
                     new Libro("0200", "Come comida Real", "Carlos Rios", "Paidos", 16.15),
@@ -34,81 +35,70 @@ public class OperacionesBinarios {
                     new Libro("2000", "Le dedico mi silencio", "Mario Vargas Llosa", "Alfaguara", 22.50)
             };
 
-            for (Libro l : lista)
-            {
+            for (Libro l : lista) {
                 l.escribir(out);
                 l.mostrar();
             }
-
             System.out.println("Fichero LIBROS generado correctamente.\n");
-
         } catch (IOException e) {
             System.out.println("Error generando fichero libros: " + e.getMessage());
         }
     }
 
     public void mostrarTodosLibros() {
- 
+
     }
 
 
     public void mostrarLibrosprecio17() {
-   
+
     }
 
     public void libroMayorPrecio() {
- 
+
     }
 
     public void generarFicheroEmpleados() {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(FICH_EMPLEADOS))) {
-
             Empleado[] lista = {
-
                     new Empleado("Ana", "López", 2),
                     new Empleado("Juan", "Martínez", 1),
                     new Empleado("Carmen", "Delgado Pérez", 3),
                     new Empleado("Luis", "García", 0),
                     new Empleado("María", "Sánchez Romero", 4),
-
                     new Empleado("Pedro", "Nuñez", 1),
                     new Empleado("Elena", "Hernández Rubio", 2),
                     new Empleado("Raúl", "Villar", 0),
                     new Empleado("Lucía", "Fernández", 3),
                     new Empleado("Jorge", "Prieto Zamora", 2),
-
                     new Empleado("Sofía", "Torres", 1),
                     new Empleado("Adrián", "Molina Pérez", 4),
                     new Empleado("Beatriz", "Calvo", 0),
                     new Empleado("Diego", "Serrano Montes", 3),
                     new Empleado("Paula", "Rivas Martín", 2)
             };
-
-            for (Empleado e : lista)
-            {
+            for (Empleado e : lista) {
                 e.escribir(out);
                 e.mostrar();
             }
-
             System.out.println("Fichero EMPLEADOS generado correctamente.");
-
         } catch (IOException e) {
             System.out.println("Error generando fichero empleados: " + e.getMessage());
         }
     }
 
     public void mostrarEmpleados() {
- 
-   
+
+
     }
 
 
     public void empleadoNombreMasLargo() {
-    
+
     }
 
     public void empleadosConMasDeDosHijos() {
-   
+
     }
 
 }

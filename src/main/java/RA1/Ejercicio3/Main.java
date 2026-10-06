@@ -1,6 +1,6 @@
 public static void main(String[] args) {
 
-    Scanner teclado = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
     OperacionesBinarios operaciones = new OperacionesBinarios();
 
@@ -22,52 +22,39 @@ public static void main(String[] args) {
         System.out.println("==============================");
         System.out.print("Elige una opción: ");
 
-        opcion = teclado.nextInt();
+        opcion = sc.nextInt();
 
         switch (opcion) {
-
             case 1:
                 operaciones.generarFicheroLibros();
                 break;
-
             case 2:
                 operaciones.mostrarLibrosCodigoOPrecio();
                 break;
-
             case 3:
                 operaciones.mostrarLibroMayorPrecio();
                 break;
-
             case 4:
                 operaciones.mostrarTodosLibros();
                 break;
-
             case 5:
                 operaciones.generarFicheroEmpleados();
                 break;
-
             case 6:
                 operaciones.mostrarTodosEmpleados();
                 break;
-
             case 7:
                 operaciones.mostrarEmpleadoMasLargo();
                 break;
-
             case 8:
                 operaciones.mostrarEmpleadosMasDeDosHijos();
                 break;
-
             case 0:
                 System.out.println("Programa terminado.");
                 break;
-
             default:
                 System.out.println("Opción no válida.");
         }
-
     } while (opcion != 0);
-
-    teclado.close();
-
+    sc.close();
 }
