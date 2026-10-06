@@ -67,12 +67,7 @@ public class GestorDatos {
     }
 
     private boolean existeCliente(int id) {
-        for (Cliente c : clientes) {
-            if (c.getId() == id) {
-                return true;
-            }
-        }
-        return false;
+        return clientes.stream().anyMatch(c -> c.getId() == id);
     }
 
     //PRODUCTOS
@@ -92,12 +87,7 @@ public class GestorDatos {
     }
 
     private boolean existeProducto(int id) {
-        for (Producto p : productos) {
-            if (p.getId() == id) {
-                return true;
-            }
-        }
-        return false;
+        return  productos.stream().anyMatch(c -> c.getId() == id);
     }
 
     // PEDIDOS
@@ -117,12 +107,7 @@ public class GestorDatos {
     }
 
     private boolean existePedido(int id) {
-        for (Pedido p : pedidos) {
-            if (p.getId() == id) {
-                return true;
-            }
-        }
-        return false;
+        return pedidos.stream().anyMatch(p -> p.getId() == id);
     }
 
     String obtenerNombreCliente(int idCliente) {
