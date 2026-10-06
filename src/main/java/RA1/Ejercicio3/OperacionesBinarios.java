@@ -73,6 +73,7 @@ public class OperacionesBinarios {
                     libro.mostrar();
                 }
             }
+        } catch (EOFException e) {
         } catch (IOException e) {
             System.err.println("Error leyendo fichero libros: " + e.getMessage());
         }
@@ -92,7 +93,7 @@ public class OperacionesBinarios {
                     libroMasCaro = libro;
                 }
             }
-        } catch (EOFException e) { //salta cuando ha terminado de leer el fichero
+        } catch (EOFException e) {
             if (libroMasCaro != null) {
                 libroMasCaro.mostrar();
             }
@@ -139,6 +140,7 @@ public class OperacionesBinarios {
                 Empleado emp = new Empleado(nombre, apellido, numerohijos);
                 emp.mostrar();
             }
+        } catch (EOFException e) {
         } catch (IOException e) {
             System.err.println("Error leyendo fichero empleados: " + e.getMessage());
         }
@@ -178,6 +180,7 @@ public class OperacionesBinarios {
                     emp.mostrar();
                 }
             }
+        } catch (EOFException e) {
         } catch (IOException e) {
             System.err.println("Error leyendo fichero empleados: " + e.getMessage());
         }
