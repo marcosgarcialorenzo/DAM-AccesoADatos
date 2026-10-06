@@ -91,7 +91,7 @@ public class OperacionesBinarios {
                     libroMasCaro = libro;
                 }
             }
-        } catch (EOFException e) {
+        } catch (EOFException e) { //salta cuando a terminado de leer el fichero
             if (libroMasCaro != null) {
                 libroMasCaro.mostrar();
             }
