@@ -1,0 +1,30 @@
+<ciclosformativos>
+    <cicloformativo id="1">
+        <nombre>DAM</nombre>
+        <instituto>Luis Vives</instituto>
+        <curso>1º</curso>
+		<localidad>Leganes</localidad>
+		<numalumnos>20</numalumnos>
+    </cicloformativo>
+    <cicloformativo id="2">
+        <nombre>DAW</nombre>
+        <instituto>Luis Vives</instituto>
+        <curso>1º</curso>
+		<localidad>Leganes</localidad>
+		<numalumnos>30</numalumnos>
+    </cicloformativo>    
+    <cicloformativo id="3">
+        <nombre>ASIR</nombre>
+        <instituto>Luis Vives</instituto>
+        <curso>1º</curso>
+		<localidad>Leganes</localidad>
+		<numalumnos>25</numalumnos>
+    </cicloformativo>    
+    <cicloformativo id="4">
+        <nombre>SMR</nombre>
+        <instituto>Luis Vives</instituto>
+        <curso>1º</curso>
+		<localidad>Leganes</localidad>
+		<numalumnos>28</numalumnos>
+    </cicloformativo>
+</ciclosformativos>
