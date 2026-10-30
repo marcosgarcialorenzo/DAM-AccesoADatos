@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final String ficheroDepartamentos = "C:\\Users\\marco\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio6\\Departamentos1.xml";
+        final String ficheroDepartamentos = "D:\\USERS_NO_BORRAR\\marcos.garcia222\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio6\\Departamentos1.xml";
         Scanner sc = new Scanner(System.in);
         OperacionesXML operacionesXML = new OperacionesXML();
         Main main = new Main();
@@ -44,7 +44,7 @@ public class Main {
     public void menuCiclosFormativos() {
         Scanner sc = new Scanner(System.in);
         OperacionesXML operacionesXML = new OperacionesXML();
-        final String ficheroCiclosFormativos = "C:\\Users\\marco\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio6\\CiclosFormativos.xml";
+        final String ficheroCiclosFormativos = "D:\\USERS_NO_BORRAR\\marcos.garcia222\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio6\\ciclosformativos.xml";
         int opcion;
         do {
             System.out.println("\n==============================");
@@ -62,10 +62,10 @@ public class Main {
                     operacionesXML.listarCiclosFormativos(ficheroCiclosFormativos);
                     break;
                 case 2:
-                    // Lógica para añadir ciclo formativo
+                    operacionesXML.añadirCicloFormativo(ficheroCiclosFormativos);
                     break;
                 case 3:
-                    // Lógica para modificar ciclo formativo
+                    operacionesXML.modificarCiclosFormativos(ficheroCiclosFormativos);
                     break;
                 case 0:
                     System.out.println("Volviendo al menú principal.");
