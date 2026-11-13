@@ -2,7 +2,7 @@
 <productos>
 <TITULO>DATOS DE LA TABLA PRODUCTOS</TITULO>
 <produc>
-    <cod_prod>1111</cod_prod>
+    <cod_prod>1010</cod_prod>
     <denominacion>Placa Base MSI G41M-P26</denominacion>
     <precio>50</precio>
     <stock_actual>10</stock_actual>
@@ -18,7 +18,7 @@
 	<cod_zona>10</cod_zona>
   </produc>
   <produc>
-    <cod_prod>1111</cod_prod>
+    <cod_prod>1012</cod_prod>
     <denominacion>Micro Intel Core i5 2500</denominacion>
     <precio>170</precio>
     <stock_actual>5</stock_actual>
