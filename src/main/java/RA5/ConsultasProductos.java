@@ -182,7 +182,8 @@ public class ConsultasProductos {
             Document doc = cargarXML(filePath);
 
             // Creamos el objeto que permite realizar consultas XPath.
-            XPath xPath = XPathFactory.newInstance().newXPath();
+            XPathFactory saxonXPathFactory = new XPathFactoryImpl();
+            XPath xPath = saxonXPathFactory.newXPath();
             String expression;
             // Seleccionamos los productos cuya denominación contiene "Placa Base".
             if (maximo) {
