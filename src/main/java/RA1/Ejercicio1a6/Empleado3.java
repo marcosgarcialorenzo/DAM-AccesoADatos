@@ -1,18 +1,18 @@
-package RA1.Ejercicio3;
+package RA1.Ejercicio1a6;
+
+import lombok.Data;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import lombok.Data;
-
 @Data
-public class Empleado {
+public class Empleado3 {
 
     private String nombre;
     private String apellido;
     private int numerohijos;
 
-    public Empleado(String nombre, String apellido, int numerohijos) {
+    public Empleado3(String nombre, String apellido, int numerohijos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numerohijos = numerohijos;

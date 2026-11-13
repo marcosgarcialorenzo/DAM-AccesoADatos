@@ -1,0 +1,190 @@
+package RA1.Ejercicio1a6;
+
+import RA1.Ejercicio3.Empleado3;
+
+import java.io.*;
+
+public class OperacionesBinarios {
+
+    private static final String FICH_LIBROS = "C:\\Users\\marco\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio3\\FLibros.dat";
+    private static final String FICH_EMPLEADOS = "C:\\Users\\marco\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio3\\FEmpleados.dat";
+
+    public void generarFicheroLibros() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream(FICH_LIBROS))) {
+            Libro[] lista = {
+                    new Libro("0100", "Largo Pétalo de Mar", "Allende", "P&J", 21.76),
+                    new Libro("0200", "Come comida Real", "Carlos Rios", "Paidos", 16.15),
+                    new Libro("0300", "Los asquerosos", "Santiago Lorenzo", "Blackie Books", 19.95),
+                    new Libro("0400", "Lo mejor de ir es volver", "Espinosa", "Grijalbo", 17.00),
+                    new Libro("1000", "Malaherba", "Jabois", "Alfaguara", 17.00),
+                    new Libro("0500", "The Emperor of Gladness", "Ocean Vuong", "Penguin Press", 24.50),
+                    new Libro("0600", "Fourth Wing", "Rebecca Yarros", "Red Tower Books", 22.00),
+                    new Libro("0700", "Onyx Storm", "Rebecca Yarros", "Red Tower Books", 22.00),
+                    new Libro("0800", "The Let Them Theory", "Mel Robbins", "Harmony", 20.00),
+                    new Libro("0900", "Sunrise on the Reaping", "Suzanne Collins", "Scholastic", 23.00),
+                    new Libro("1100", "Great Big Beautiful Life", "Emily Henry", "Berkley", 18.50),
+                    new Libro("1200", "The Wilderness", "Angela Flournoy", "Riverhead", 21.00),
+                    new Libro("1300", "Heart the Lover", "Lily King", "G.P. Putnam's Sons", 22.50),
+                    new Libro("1400", "Braiding Sweetgrass", "Robin Wall Kimmerer", "Milkweed", 19.95),
+                    new Libro("1500", "The Housemaid", "Freida McFadden", "Berkley", 17.99),
+                    new Libro("1600", "Archipelago of the Sun", "Yoko Tawada", "FSG Originals", 24.00),
+                    new Libro("1700", "El viento conoce mi nombre", "Isabel Allende", "Plaza & Janés", 21.00),
+                    new Libro("1800", "La anomalía", "Hervé Le Tellier", "Seix Barral", 19.00),
+                    new Libro("1900", "Cómo no ser un esclavo del tiempo", "Oliver Burkeman", "Planeta", 18.90),
+                    new Libro("2000", "Le dedico mi silencio", "Mario Vargas Llosa", "Alfaguara", 22.50)
+            };
+
+            for (Libro l : lista) {
+                l.escribir(out);
+                l.mostrar();
+            }
+            System.out.println("Fichero LIBROS generado correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error generando fichero libros: " + e.getMessage());
+        }
+    }
+
+    public void mostrarTodosLibros() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+            while (true) {
+                String codigo = in.readUTF();
+                String titulo = in.readUTF();
+                String autor = in.readUTF();
+                String editorial = in.readUTF();
+                double precio = in.readDouble();
+                Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
+                libro.mostrar();
+            }
+        } catch (EOFException e) {
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero libros: " + e.getMessage());
+        }
+    }
+
+
+    public void mostrarLibrosCodigoOPrecio() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+            while (true) {
+                String codigo = in.readUTF();
+                String titulo = in.readUTF();
+                String autor = in.readUTF();
+                String editorial = in.readUTF();
+                double precio = in.readDouble();
+                if (codigo.equals("0100") || precio == 17.00) {
+                    Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
+                    libro.mostrar();
+                }
+            }
+        } catch (EOFException e) {
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero libros: " + e.getMessage());
+        }
+    }
+
+    public void mostrarLibroMayorPrecio() {
+        Libro libroMasCaro = null;
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_LIBROS))) {
+            while (true) {
+                String codigo = in.readUTF();
+                String titulo = in.readUTF();
+                String autor = in.readUTF();
+                String editorial = in.readUTF();
+                double precio = in.readDouble();
+                Libro libro = new Libro(codigo, titulo, autor, editorial, precio);
+                if (libroMasCaro == null || precio > libroMasCaro.getPrecio()) {
+                    libroMasCaro = libro;
+                }
+            }
+        } catch (EOFException e) {
+            if (libroMasCaro != null) {
+                libroMasCaro.mostrar();
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero libros: " + e.getMessage());
+        }
+    }
+
+    public void generarFicheroEmpleados() {
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream(FICH_EMPLEADOS))) {
+            Empleado3[] lista = {
+                    new Empleado3("Ana", "López", 2),
+                    new Empleado3("Juan", "Martínez", 1),
+                    new Empleado3("Carmen", "Delgado Pérez", 3),
+                    new Empleado3("Luis", "García", 0),
+                    new Empleado3("María", "Sánchez Romero", 4),
+                    new Empleado3("Pedro", "Nuñez", 1),
+                    new Empleado3("Elena", "Hernández Rubio", 2),
+                    new Empleado3("Raúl", "Villar", 0),
+                    new Empleado3("Lucía", "Fernández", 3),
+                    new Empleado3("Jorge", "Prieto Zamora", 2),
+                    new Empleado3("Sofía", "Torres", 1),
+                    new Empleado3("Adrián", "Molina Pérez", 4),
+                    new Empleado3("Beatriz", "Calvo", 0),
+                    new Empleado3("Diego", "Serrano Montes", 3),
+                    new Empleado3("Paula", "Rivas Martín", 2)
+            };
+            for (Empleado3 e : lista) {
+                e.escribir(out);
+                e.mostrar();
+            }
+            System.out.println("Fichero EMPLEADOS generado correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error generando fichero empleados: " + e.getMessage());
+        }
+    }
+
+    public void mostrarTodosEmpleados() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
+            while (true) {
+                String nombre = in.readUTF();
+                String apellido = in.readUTF();
+                int numerohijos = in.readInt();
+                Empleado3 emp = new Empleado3(nombre, apellido, numerohijos);
+                emp.mostrar();
+            }
+        } catch (EOFException e) {
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero empleados: " + e.getMessage());
+        }
+    }
+
+    public void mostrarEmpleadoMasLargo() {
+        Empleado3 empleado3Largo = null;
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
+            while (true) {
+                String nombre = in.readUTF();
+                String apellido = in.readUTF();
+                int numerohijos = in.readInt();
+                Empleado3 emp = new Empleado3(nombre, apellido, numerohijos);
+                int longitudEmpleado = nombre.length() + apellido.length();
+                int longitudEmpleadoLargo = empleado3Largo != null ? empleado3Largo.getNombre().length() + empleado3Largo.getApellido().length() : 0;
+                if (empleado3Largo == null || longitudEmpleado > longitudEmpleadoLargo) {
+                    empleado3Largo = emp;
+                }
+            }
+        } catch (EOFException e) { //salta cuando ha terminado de leer el fichero
+            if (empleado3Largo != null) {
+                empleado3Largo.mostrar();
+            }
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero empleados: " + e.getMessage());
+        }
+    }
+
+    public void mostrarEmpleadosMasDeDosHijos() {
+        try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
+            while (true) {
+                String nombre = in.readUTF();
+                String apellido = in.readUTF();
+                int numerohijos = in.readInt();
+                Empleado3 emp = new Empleado3(nombre, apellido, numerohijos);
+                if (numerohijos > 2) {
+                    emp.mostrar();
+                }
+            }
+        } catch (EOFException e) {
+        } catch (IOException e) {
+            System.err.println("Error leyendo fichero empleados: " + e.getMessage());
+        }
+    }
+}

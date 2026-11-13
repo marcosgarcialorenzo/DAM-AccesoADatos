@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.s9api.XdmItem;
 import net.sf.saxon.s9api.SaxonApiException;
+import net.sf.saxon.xpath.XPathFactoryImpl;
 
 
 public class Main {
@@ -69,8 +70,7 @@ public class Main {
     private static void menuProductos() {
 
         ConsultasProductos cp = new ConsultasProductos();
-        String archivoXML = "C:\\Users\\Marcos\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java" +
-                "\\RA5\\productos.xml";
+        String archivoXML = "D:\\USERS_NO_BORRAR\\marcos.garcia222\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA5\\productos.xml";
         int opcion;
         do {
             System.out.println("\n===== CONSULTAS DE PRODUCTOS =====");

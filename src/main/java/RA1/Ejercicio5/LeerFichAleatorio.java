@@ -1,46 +1,41 @@
 package RA1.Ejercicio5;
-
 import java.io.*;
-import java.util.Scanner;
-
 public class LeerFichAleatorio {
-    
-    public static void leerPorId() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("ID a buscar: ");
-        int id = sc.nextInt();
+    String fich;
 
-        File fichero = new File("C:\\Users\\Marcos\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio5\\AleatorioEmple.dat");
+    public LeerFichAleatorio(String fich) {
+        this.fich = fich;
+    }
+    public void leer() throws IOException {
+        File fichero = new File(fich);
+        //declara el fichero de acceso aleatorio
         RandomAccessFile file = new RandomAccessFile(fichero, "r");
-        long posicion = (id - 1) * 36L;
+        //
+        int  id, dep, posicion;
+        Double salario;
+        char apellido[] = new char[10], aux;
 
-        if (id <= 0 || posicion >= file.length()) {
-            System.out.println("El empleado con ID " + id + " no existe.");
-        } else {
-            file.seek(posicion);
-            int idLeido = file.readInt();
-            char nombre[] = new char[10];
-            for (int i = 0; i < 10; i++) {
-                nombre[i] = file.readChar();
+        posicion=0;  //para situarnos al principio
+
+        for(;;){  //recorro el fichero
+            file.seek(posicion); //nos posicionamos en posicion
+            id=file.readInt();   // obtengo id de empleado
+            for (int i = 0; i < apellido.length; i++) {
+                aux = file.readChar();//recorro uno a uno los caracteres del apellido
+                apellido[i] = aux;    //los voy guardando en el array
             }
-            int dep = file.readInt();
-            double salario = file.readDouble();
-            System.out.println("ID: " + idLeido + ", Nombre: " + new String(nombre).trim() + ", Departamento: " + dep + ", Salario: " + salario);
-        }
-        file.close();
-    }
+            String apellidoS= new String(apellido).trim();//convierto a String el array
+            dep=file.readInt();//obtengo dep
+            salario=file.readDouble();  //obtengo salario
 
-    public static void visualizarTodo() throws IOException {
-        File fichero = new File("C:\\Users\\Marcos\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA1\\Ejercicio5\\AleatorioEmple.dat");
-        RandomAccessFile file = new RandomAccessFile(fichero, "r");
-        while (file.getFilePointer() < file.length()) { // Mientras no se llegue al final del archivo, se puede poner for(;;) y luego un break al final del bucle
-            int id = file.readInt(); // Lee el ID
-            char nombre[] = new char[10]; // Array para almacenar el nombre
-            for (int i = 0; i < 10; i++) nombre[i] = file.readChar(); // Lee el nombre
-            int dep = file.readInt(); // Lee el departamento
-            double salario = file.readDouble(); // Lee el salario
-            System.out.println("ID: " + id + ", nombre: " + new String(nombre).trim() + ", dep: " + dep + ", salario: " + salario);
-        }
-        file.close(); // Cierra el fichero
+            System.out.println("ID: " + id + ", Apellido: "+  apellidoS +
+                    ", Departamento: "+dep + ", Salario: " + salario);
+            posicion= posicion + 36; // me posiciono para el sig empleado
+            //Cada empleado ocupa 36 bytes (4+20+4+8)
+            //Si he recorrido todos los bytes salgo del for
+            if (file.getFilePointer()==file.length())break;
+
+        }//fin bucle for
+        file.close();  //cerrar fichero
     }
-}
+    }

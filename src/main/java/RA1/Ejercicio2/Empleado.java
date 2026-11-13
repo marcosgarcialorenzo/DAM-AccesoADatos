@@ -37,7 +37,7 @@ public class Empleado implements Serializable {
     }
 
     public void mostrarEmpleado() {
-        System.out.println("=== Empleado ===");
+        System.out.println("=== Empleado3 ===");
         System.out.println("Código: " + codigo);
         System.out.println("Nombre: " + nombre);
         System.out.println("Salario: " + salario);

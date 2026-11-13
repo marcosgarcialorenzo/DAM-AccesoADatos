@@ -7,6 +7,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
+import net.sf.saxon.xpath.XPathFactoryImpl;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -100,26 +102,19 @@ public class ConsultasProductos {
         return null;
     }
 
-    // 5. Obtener la media del precio de los micros
-    // XPath 1.0 de Java no dispone de avg(), por eso calculamos la media en Java.
+    // 5. Obtener la media del precio de los micros usando XPath 2.0 de Saxon
     public double calcularMediaPrecioMicros(String filePath) {
         try {
-            // Cargamos el documento XML desde la ruta recibida.
             Document doc = cargarXML(filePath);
-
-            // Creamos el objeto que permite realizar consultas XPath.
-            XPath xPath = XPathFactory.newInstance().newXPath();
-
-            // Seleccionamos los productos cuya denominación contiene "Placa Base".
+            XPathFactory saxonXPathFactory = new XPathFactoryImpl();
+            XPath xPath = saxonXPathFactory.newXPath();
             String expression = "avg(/productos/produc[contains(denominacion, 'Micro')]/precio)";
             XPathExpression xPathExpression = xPath.compile(expression);
-
-            // Ejecutamos la consulta y devolvemos todos los nodos encontrados.
-            return (Double) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+            return (Double) xPathExpression.evaluate(doc, XPathConstants.NUMBER);
         } catch (Exception e) {
             e.printStackTrace();
+            return 0.0;
         }
-        return Double.parseDouble(null);
     }
 
     // 6. Obtener productos cuyo stock mínimo sea mayor que el actual

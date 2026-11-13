@@ -104,24 +104,24 @@ public class OperacionesBinarios {
 
     public void generarFicheroEmpleados() {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(FICH_EMPLEADOS))) {
-            Empleado[] lista = {
-                    new Empleado("Ana", "López", 2),
-                    new Empleado("Juan", "Martínez", 1),
-                    new Empleado("Carmen", "Delgado Pérez", 3),
-                    new Empleado("Luis", "García", 0),
-                    new Empleado("María", "Sánchez Romero", 4),
-                    new Empleado("Pedro", "Nuñez", 1),
-                    new Empleado("Elena", "Hernández Rubio", 2),
-                    new Empleado("Raúl", "Villar", 0),
-                    new Empleado("Lucía", "Fernández", 3),
-                    new Empleado("Jorge", "Prieto Zamora", 2),
-                    new Empleado("Sofía", "Torres", 1),
-                    new Empleado("Adrián", "Molina Pérez", 4),
-                    new Empleado("Beatriz", "Calvo", 0),
-                    new Empleado("Diego", "Serrano Montes", 3),
-                    new Empleado("Paula", "Rivas Martín", 2)
+            Empleado3[] lista = {
+                    new Empleado3("Ana", "López", 2),
+                    new Empleado3("Juan", "Martínez", 1),
+                    new Empleado3("Carmen", "Delgado Pérez", 3),
+                    new Empleado3("Luis", "García", 0),
+                    new Empleado3("María", "Sánchez Romero", 4),
+                    new Empleado3("Pedro", "Nuñez", 1),
+                    new Empleado3("Elena", "Hernández Rubio", 2),
+                    new Empleado3("Raúl", "Villar", 0),
+                    new Empleado3("Lucía", "Fernández", 3),
+                    new Empleado3("Jorge", "Prieto Zamora", 2),
+                    new Empleado3("Sofía", "Torres", 1),
+                    new Empleado3("Adrián", "Molina Pérez", 4),
+                    new Empleado3("Beatriz", "Calvo", 0),
+                    new Empleado3("Diego", "Serrano Montes", 3),
+                    new Empleado3("Paula", "Rivas Martín", 2)
             };
-            for (Empleado e : lista) {
+            for (Empleado3 e : lista) {
                 e.escribir(out);
                 e.mostrar();
             }
@@ -137,7 +137,7 @@ public class OperacionesBinarios {
                 String nombre = in.readUTF();
                 String apellido = in.readUTF();
                 int numerohijos = in.readInt();
-                Empleado emp = new Empleado(nombre, apellido, numerohijos);
+                Empleado3 emp = new Empleado3(nombre, apellido, numerohijos);
                 emp.mostrar();
             }
         } catch (EOFException e) {
@@ -147,22 +147,22 @@ public class OperacionesBinarios {
     }
 
     public void mostrarEmpleadoMasLargo() {
-        Empleado empleadoLargo = null;
+        Empleado3 empleado3Largo = null;
         try (DataInputStream in = new DataInputStream(new FileInputStream(FICH_EMPLEADOS))) {
             while (true) {
                 String nombre = in.readUTF();
                 String apellido = in.readUTF();
                 int numerohijos = in.readInt();
-                Empleado emp = new Empleado(nombre, apellido, numerohijos);
+                Empleado3 emp = new Empleado3(nombre, apellido, numerohijos);
                 int longitudEmpleado = nombre.length() + apellido.length();
-                int longitudEmpleadoLargo = empleadoLargo != null ? empleadoLargo.getNombre().length() + empleadoLargo.getApellido().length() : 0;
-                if (empleadoLargo == null || longitudEmpleado > longitudEmpleadoLargo) {
-                    empleadoLargo = emp;
+                int longitudEmpleadoLargo = empleado3Largo != null ? empleado3Largo.getNombre().length() + empleado3Largo.getApellido().length() : 0;
+                if (empleado3Largo == null || longitudEmpleado > longitudEmpleadoLargo) {
+                    empleado3Largo = emp;
                 }
             }
         } catch (EOFException e) { //salta cuando ha terminado de leer el fichero
-            if (empleadoLargo != null) {
-                empleadoLargo.mostrar();
+            if (empleado3Largo != null) {
+                empleado3Largo.mostrar();
             }
         } catch (IOException e) {
             System.err.println("Error leyendo fichero empleados: " + e.getMessage());
@@ -175,7 +175,7 @@ public class OperacionesBinarios {
                 String nombre = in.readUTF();
                 String apellido = in.readUTF();
                 int numerohijos = in.readInt();
-                Empleado emp = new Empleado(nombre, apellido, numerohijos);
+                Empleado3 emp = new Empleado3(nombre, apellido, numerohijos);
                 if (numerohijos > 2) {
                     emp.mostrar();
                 }

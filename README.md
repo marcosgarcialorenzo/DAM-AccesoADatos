@@ -49,7 +49,7 @@ configurada en el proyecto.
   copia y filtrado de líneas.
 - **Ejercicio 2 (`RA1.Ejercicio2`)**: lectura y escritura de ficheros binarios
   mediante `DataInputStream` y `DataOutputStream`, además de ejemplos con la
-  clase `Empleado`.
+  clase `Empleado3`.
 
 ### RA6 - Gestión de datos
 
