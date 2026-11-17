@@ -182,11 +182,11 @@ public class Main {
                     cs.imprimirNodos(cs.mostrarCuentasPensionesSUC3(archivo));
                     break;
 
-                /*case 4:
+                case 4:
                     cs.mostrarSaldoTotalPorSucursal(archivo);
                     break;
 
-                case 5:
+                /*case 5:
                     cs.imprimirNodos(cs.mostrarSucursalesMasDe3Cuentas(archivo));
                     break;
 

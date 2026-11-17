@@ -51,15 +51,11 @@ public class ConsultasSucursales {
                 for (int j = 0; j < detalles.getLength(); j++) {
                     Node detalle = detalles.item(j);
                     if (detalle.getNodeType() == Node.ELEMENT_NODE) {
-                        System.out.println(
-                                "  " + detalle.getNodeName() + ": "
-                                        + detalle.getTextContent().trim());
+                        System.out.println("  " + detalle.getNodeName() + ": " + detalle.getTextContent().trim());
                     }
                 }
             } else {
-                System.out.println(
-                        "  " + producto.getNodeName() + ": "
-                                + producto.getTextContent().trim());
+                System.out.println("  " + producto.getNodeName() + ": " + producto.getTextContent().trim());
             }
         }
     }
@@ -94,5 +90,25 @@ public class ConsultasSucursales {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void mostrarSaldoTotalPorSucursal(String archivo) {
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "//sucursal"; // Selecciona todas las sucursales
+            XPathExpression xPathExpression = xPath.compile(expression);
+            NodeList sucursales = (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET); // Obtiene la lista de nodos de sucursales
+            for (int i = 0; i < sucursales.getLength(); i++) { // Itera sobre cada sucursal
+                Node sucursal = sucursales.item(i);
+                String sumExpression = "sum(cuenta/saldohaber)"; // Suma los saldos de todas las cuentas dentro de la sucursal
+                Double totalSaldo = (Double) xPath.evaluate(sumExpression, sucursal, XPathConstants.NUMBER);
+                String codigo = sucursal.getAttributes().getNamedItem("codigo").getNodeValue(); // Obtiene el código de la sucursal
+                String director = xPath.evaluate("director", sucursal); // Obtiene el nombre del director de la sucursal
+                System.out.println(codigo + " " + director + " " + totalSaldo); // Imprime el código, director y saldo total de la sucursal
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
