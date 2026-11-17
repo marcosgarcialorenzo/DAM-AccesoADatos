@@ -178,11 +178,11 @@ public class Main {
                     cs.mostrarNumeroCuentasAhorroPorSucursal(archivo);
                     break;
 
-               /* case 3:
+               case 3:
                     cs.imprimirNodos(cs.mostrarCuentasPensionesSUC3(archivo));
                     break;
 
-                case 4:
+                /*case 4:
                     cs.mostrarSaldoTotalPorSucursal(archivo);
                     break;
 

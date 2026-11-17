@@ -63,7 +63,7 @@ public class ConsultasSucursales {
             }
         }
     }
-    
+
     public void mostrarNumeroCuentasAhorroPorSucursal(String archivo) {
         try {
             Document doc = cargarXML(archivo);
@@ -81,5 +81,18 @@ public class ConsultasSucursales {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public NodeList mostrarCuentasPensionesSUC3(String archivo) {
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "//sucursal[@codigo='SUC3']/cuenta[@tipo='PENSIONES']";
+            XPathExpression xPathExpression = xPath.compile(expression);
+            return (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
