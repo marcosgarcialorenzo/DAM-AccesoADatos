@@ -194,11 +194,11 @@ public class Main {
                     cs.imprimirNodos(cs.mostrarSucursalesMasDe3CuentasAhorro(archivo));
                     break;
 
-                /*case 7:
+                case 7:
                     cs.imprimirNodos(cs.mostrarDirectorYPoblacionMasDe3Cuentas(archivo));
                     break;
 
-                case 8:
+                /*case 8:
                     System.out.println("Sucursales de Madrid: " + cs.contarSucursalesMadrid(archivo));
                     break;*/
 

@@ -137,4 +137,17 @@ public class ConsultasSucursales {
         }
         return null;
     }
+    
+    public NodeList mostrarDirectorYPoblacionMasDe3Cuentas(String archivo) {
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "//sucursal[count(cuenta) > 3]/director | //sucursal[count(cuenta) > 3]/poblacion";
+            XPathExpression xPathExpression = xPath.compile(expression);
+            return (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
