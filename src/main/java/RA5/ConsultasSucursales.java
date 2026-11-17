@@ -111,4 +111,19 @@ public class ConsultasSucursales {
             e.printStackTrace();
         }
     }
+    
+    public NodeList mostrarSucursalesMasDe3Cuentas(String archivo) { //este es imposible que 
+        // salga como lo tiene FEDE porque usa el metodo imprimirNodos, y si hago que salga el 
+        // formateo adecuado para este metodo, el metodo 1 no tendra el formateo adecuado
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "//sucursal[count(cuenta) > 3]";
+            XPathExpression xPathExpression = xPath.compile(expression);
+            return (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
