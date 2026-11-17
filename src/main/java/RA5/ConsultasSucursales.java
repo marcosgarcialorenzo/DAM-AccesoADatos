@@ -118,7 +118,7 @@ public class ConsultasSucursales {
         try {
             Document doc = cargarXML(archivo);
             XPath xPath = XPathFactory.newInstance().newXPath();
-            String expression = "//sucursal[count(cuenta) > 3]";
+            String expression = "//sucursal[count(cuenta) > 3]//*";
             XPathExpression xPathExpression = xPath.compile(expression);
             return (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
         } catch (Exception e) {
