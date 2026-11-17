@@ -30,8 +30,6 @@ public class ConsultasSucursales {
         try {
             Document doc = cargarXML(archivo);
             XPath xPath = XPathFactory.newInstance().newXPath();
-
-            // El operador | une los resultados de dos rutas XPath distintas.
             String expression = "//sucursal/cuenta[@tipo='AHORRO']";
             XPathExpression xPathExpression = xPath.compile(expression);
             return (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
@@ -46,13 +44,10 @@ public class ConsultasSucursales {
             System.out.println("No se encontraron productos.");
             return;
         }
-
-        // NodeList se recorre mediante índices, desde 0 hasta length - 1.
         for (int i = 0; i < productos.getLength(); i++) {
             Node producto = productos.item(i);
             if (producto.getNodeName().equals("sucursal")) {
                 NodeList detalles = producto.getChildNodes();
-                // getChildNodes() también incluye nodos de texto; por eso se comprueba ELEMENT_NODE.
                 for (int j = 0; j < detalles.getLength(); j++) {
                     Node detalle = detalles.item(j);
                     if (detalle.getNodeType() == Node.ELEMENT_NODE) {
@@ -66,6 +61,25 @@ public class ConsultasSucursales {
                         "  " + producto.getNodeName() + ": "
                                 + producto.getTextContent().trim());
             }
+        }
+    }
+    
+    public void mostrarNumeroCuentasAhorroPorSucursal(String archivo) {
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "//sucursal";
+            XPathExpression xPathExpression = xPath.compile(expression);
+            NodeList sucursales = (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < sucursales.getLength(); i++) {
+                Node sucursal = sucursales.item(i);
+                String countExpression = "count(cuenta[@tipo='AHORRO'])";
+                Double count = (Double) xPath.evaluate(countExpression, sucursal, XPathConstants.NUMBER);
+                String codigo = sucursal.getAttributes().getNamedItem("codigo").getNodeValue();
+                System.out.println(codigo + " " + count.intValue());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
