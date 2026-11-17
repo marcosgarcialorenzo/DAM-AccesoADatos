@@ -190,11 +190,11 @@ public class Main {
                     cs.imprimirNodos(cs.mostrarSucursalesMasDe3Cuentas(archivo));
                     break;
 
-                /*case 6:
+                case 6:
                     cs.imprimirNodos(cs.mostrarSucursalesMasDe3CuentasAhorro(archivo));
                     break;
 
-                case 7:
+                /*case 7:
                     cs.imprimirNodos(cs.mostrarDirectorYPoblacionMasDe3Cuentas(archivo));
                     break;
 

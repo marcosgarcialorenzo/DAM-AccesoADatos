@@ -124,4 +124,17 @@ public class ConsultasSucursales {
         }
         return null;
     }
+    
+    public NodeList mostrarSucursalesMasDe3CuentasAhorro(String archivo) {
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "//sucursal[count(cuenta[@tipo='AHORRO']) > 3]//*"; //el XML no tiene sucursales con más de 3 cuentas de ahorro, por eso no devuelve nada
+            XPathExpression xPathExpression = xPath.compile(expression);
+            return (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
