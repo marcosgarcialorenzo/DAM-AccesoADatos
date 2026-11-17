@@ -112,9 +112,7 @@ public class ConsultasSucursales {
         }
     }
     
-    public NodeList mostrarSucursalesMasDe3Cuentas(String archivo) { //este es imposible que 
-        // salga como lo tiene FEDE porque usa el metodo imprimirNodos, y si hago que salga el 
-        // formateo adecuado para este metodo, el metodo 1 no tendra el formateo adecuado
+    public NodeList mostrarSucursalesMasDe3Cuentas(String archivo) { //este es imposible que
         try {
             Document doc = cargarXML(archivo);
             XPath xPath = XPathFactory.newInstance().newXPath();
