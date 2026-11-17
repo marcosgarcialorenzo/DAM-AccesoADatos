@@ -4,8 +4,11 @@ package RA5;
 import java.util.Scanner;
 
 import org.w3c.dom.NodeList;
+
 import java.util.Scanner;
+
 import org.w3c.dom.NodeList;
+
 import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.s9api.XdmItem;
 import net.sf.saxon.s9api.SaxonApiException;
@@ -35,10 +38,10 @@ public class Main {
                     menuProductos();
                     break;
                 case 2:
-                    //menuSucursales();
+                    menuSucursales();
                     break;
                 case 3:
-                   // menuClinicas();
+                    // menuClinicas();
                     break;
                 case 0:
                     System.out.println("Fin del programa.");
@@ -107,7 +110,7 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("Media del precio de los micros: "+ cp.calcularMediaPrecioMicros(archivoXML) + " euros");
+                    System.out.println("Media del precio de los micros: " + cp.calcularMediaPrecioMicros(archivoXML) + " euros");
                     break;
 
                 case 6:
@@ -144,10 +147,10 @@ public class Main {
     // 2. CONSULTAS DE SUCURSALES
     // ==================================================
 
-    /*private static void menuSucursales() {
+    private static void menuSucursales() {
 
         ConsultasSucursales cs = new ConsultasSucursales();
-        String archivo = "C:/ejercicios/Sucursales.xml";
+        String archivo = "D:\\USERS_NO_BORRAR\\marcos.garcia222\\IdeaProjects\\DAM-AccesoADatos\\src\\main\\java\\RA5\\sucursales.xml";
 
         int opcion;
 
@@ -168,17 +171,15 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    cs.imprimirNodos(
-                            cs.mostrarCuentasAhorro(archivo));
+                    cs.imprimirNodos(cs.mostrarCuentasAhorro(archivo));
                     break;
 
-                case 2:
+               /* case 2:
                     cs.mostrarNumeroCuentasAhorro(archivo);
                     break;
 
                 case 3:
-                    cs.imprimirNodos(
-                            cs.mostrarCuentasPensionesSUC3(archivo));
+                    cs.imprimirNodos(cs.mostrarCuentasPensionesSUC3(archivo));
                     break;
 
                 case 4:
@@ -186,24 +187,20 @@ public class Main {
                     break;
 
                 case 5:
-                    cs.imprimirNodos(
-                            cs.mostrarSucursalesMasDe3Cuentas(archivo));
+                    cs.imprimirNodos(cs.mostrarSucursalesMasDe3Cuentas(archivo));
                     break;
 
                 case 6:
-                    cs.imprimirNodos(
-                            cs.mostrarSucursalesMasDe3CuentasAhorro(archivo));
+                    cs.imprimirNodos(cs.mostrarSucursalesMasDe3CuentasAhorro(archivo));
                     break;
 
                 case 7:
-                    cs.imprimirNodos(
-                            cs.mostrarDirectorYPoblacionMasDe3Cuentas(archivo));
+                    cs.imprimirNodos(cs.mostrarDirectorYPoblacionMasDe3Cuentas(archivo));
                     break;
 
                 case 8:
-                    System.out.println("Sucursales de Madrid: "
-                            + cs.contarSucursalesMadrid(archivo));
-                    break;
+                    System.out.println("Sucursales de Madrid: " + cs.contarSucursalesMadrid(archivo));
+                    break;*/
 
                 case 0:
                     break;
@@ -211,7 +208,6 @@ public class Main {
                 default:
                     System.out.println("Opción no válida.");
             }
-
         } while (opcion != 0);
     }
 
@@ -219,7 +215,7 @@ public class Main {
     // 3. CONSULTAS XQUERY DE HOSPITALES Y MÉDICOS
     // ==================================================
 
-    private static void menuClinicas() {
+    /*private static void menuClinicas() {
 
         ConsultasXquerys cx = new ConsultasXquerys();
 

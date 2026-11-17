@@ -1,0 +1,151 @@
+<sucursales>
+  <sucursal telefono="123456789" codigo="SUC1">
+      <director>Juan Perez</director>
+      <poblacion>Madrid</poblacion>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 1</nombre>
+          <numero>0001</numero>
+          <saldohaber>5000</saldohaber>
+          <saldodebe>1000</saldodebe>
+      </cuenta>
+      <cuenta tipo="CORRIENTE">
+          <nombre>Cuenta Corriente 1</nombre>
+          <numero>0002</numero>
+          <saldohaber>15000</saldohaber>
+          <saldodebe>3000</saldodebe>
+      </cuenta>
+      <cuenta tipo="PENSIONES">
+          <nombre>Cuenta Pensiones 1</nombre>
+          <numero>0003</numero>
+          <saldohaber>8000</saldohaber>
+          <saldodebe>2000</saldodebe>
+      </cuenta>
+  </sucursal>
+
+  <sucursal telefono="987654321" codigo="SUC2">
+      <director>Ana Gomez</director>
+      <poblacion>Barcelona</poblacion>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 2</nombre>
+          <numero>0004</numero>
+          <saldohaber>12000</saldohaber>
+          <saldodebe>4000</saldodebe>
+      </cuenta>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 3</nombre>
+          <numero>0005</numero>
+          <saldohaber>3000</saldohaber>
+          <saldodebe>500</saldodebe>
+      </cuenta>
+      <cuenta tipo="PENSIONES">
+          <nombre>Cuenta Pensiones 2</nombre>
+          <numero>0006</numero>
+          <saldohaber>7000</saldohaber>
+          <saldodebe>1500</saldodebe>
+      </cuenta>
+      <cuenta tipo="CORRIENTE">
+          <nombre>Cuenta Corriente 2</nombre>
+          <numero>0007</numero>
+          <saldohaber>16000</saldohaber>
+          <saldodebe>2500</saldodebe>
+      </cuenta>
+  </sucursal>
+
+  <sucursal telefono="564738291" codigo="SUC3">
+      <director>Maria Lopez</director>
+      <poblacion>Sevilla</poblacion>
+      <cuenta tipo="PENSIONES">
+          <nombre>Cuenta Pensiones 3</nombre>
+          <numero>0008</numero>
+          <saldohaber>11000</saldohaber>
+          <saldodebe>3000</saldodebe>
+      </cuenta>
+      <cuenta tipo="CORRIENTE">
+          <nombre>Cuenta Corriente 3</nombre>
+          <numero>0009</numero>
+          <saldohaber>2000</saldohaber>
+          <saldodebe>500</saldodebe>
+      </cuenta>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 4</nombre>
+          <numero>0010</numero>
+          <saldohaber>6000</saldohaber>
+          <saldodebe>800</saldodebe>
+      </cuenta>
+  </sucursal>
+
+  <sucursal telefono="111222333" codigo="SUC4">
+      <director>Pedro Sanchez</director>
+      <poblacion>Valencia</poblacion>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 5</nombre>
+          <numero>0011</numero>
+          <saldohaber>8000</saldohaber>
+          <saldodebe>1000</saldodebe>
+      </cuenta>
+      <cuenta tipo="PENSIONES">
+          <nombre>Cuenta Pensiones 4</nombre>
+          <numero>0012</numero>
+          <saldohaber>5000</saldohaber>
+          <saldodebe>500</saldodebe>
+      </cuenta>
+      <cuenta tipo="CORRIENTE">
+          <nombre>Cuenta Corriente 4</nombre>
+          <numero>0013</numero>
+          <saldohaber>12000</saldohaber>
+          <saldodebe>2500</saldodebe>
+      </cuenta>
+  </sucursal>
+
+  <sucursal telefono="444555666" codigo="SUC5">
+      <director>Lucia Ramirez</director>
+      <poblacion>Madrid</poblacion>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 6</nombre>
+          <numero>0014</numero>
+          <saldohaber>10000</saldohaber>
+          <saldodebe>2000</saldodebe>
+      </cuenta>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 7</nombre>
+          <numero>0015</numero>
+          <saldohaber>4000</saldohaber>
+          <saldodebe>1000</saldodebe>
+      </cuenta>
+      <cuenta tipo="PENSIONES">
+          <nombre>Cuenta Pensiones 5</nombre>
+          <numero>0016</numero>
+          <saldohaber>9000</saldohaber>
+          <saldodebe>1500</saldodebe>
+      </cuenta>
+      <cuenta tipo="CORRIENTE">
+          <nombre>Cuenta Corriente 5</nombre>
+          <numero>0017</numero>
+          <saldohaber>13000</saldohaber>
+          <saldodebe>2500</saldodebe>
+      </cuenta>
+  </sucursal>
+
+  <sucursal telefono="777888999" codigo="SUC6">
+      <director>Carlos Ruiz</director>
+      <poblacion>Barcelona</poblacion>
+      <cuenta tipo="PENSIONES">
+          <nombre>Cuenta Pensiones 6</nombre>
+          <numero>0018</numero>
+          <saldohaber>14000</saldohaber>
+          <saldodebe>3000</saldodebe>
+      </cuenta>
+      <cuenta tipo="CORRIENTE">
+          <nombre>Cuenta Corriente 6</nombre>
+          <numero>0019</numero>
+          <saldohaber>20000</saldohaber>
+          <saldodebe>4000</saldodebe>
+      </cuenta>
+      <cuenta tipo="AHORRO">
+          <nombre>Cuenta Ahorro 8</nombre>
+          <numero>0020</numero>
+          <saldohaber>2500</saldohaber>
+          <saldodebe>600</saldodebe>
+      </cuenta>
+  </sucursal>
+</sucursales>
