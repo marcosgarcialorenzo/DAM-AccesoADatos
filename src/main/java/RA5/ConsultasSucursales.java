@@ -111,7 +111,7 @@ public class ConsultasSucursales {
             e.printStackTrace();
         }
     }
-    
+
     public NodeList mostrarSucursalesMasDe3Cuentas(String archivo) { //este es imposible que
         try {
             Document doc = cargarXML(archivo);
@@ -124,7 +124,7 @@ public class ConsultasSucursales {
         }
         return null;
     }
-    
+
     public NodeList mostrarSucursalesMasDe3CuentasAhorro(String archivo) {
         try {
             Document doc = cargarXML(archivo);
@@ -137,7 +137,7 @@ public class ConsultasSucursales {
         }
         return null;
     }
-    
+
     public NodeList mostrarDirectorYPoblacionMasDe3Cuentas(String archivo) {
         try {
             Document doc = cargarXML(archivo);
@@ -149,5 +149,18 @@ public class ConsultasSucursales {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int contarSucursalesMadrid(String archivo) {
+        try {
+            Document doc = cargarXML(archivo);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "count(//sucursal[poblacion='Madrid'])";
+            Double count = (Double) xPath.evaluate(expression, doc, XPathConstants.NUMBER);
+            return count.intValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

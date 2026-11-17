@@ -178,7 +178,7 @@ public class Main {
                     cs.mostrarNumeroCuentasAhorroPorSucursal(archivo);
                     break;
 
-               case 3:
+                case 3:
                     cs.imprimirNodos(cs.mostrarCuentasPensionesSUC3(archivo));
                     break;
 
@@ -198,9 +198,9 @@ public class Main {
                     cs.imprimirNodos(cs.mostrarDirectorYPoblacionMasDe3Cuentas(archivo));
                     break;
 
-                /*case 8:
+                case 8:
                     System.out.println("Sucursales de Madrid: " + cs.contarSucursalesMadrid(archivo));
-                    break;*/
+                    break;
 
                 case 0:
                     break;
