@@ -14,7 +14,6 @@ public class OperacionesAlumnos {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             System.out.println("Conexión CORRECTA a la base de datos MYSQL.");
-            System.out.println("Ya puedes seguir realizando las operaciones de consulta, modificar, borrar o insertar.");
             while (resultSet.next()) {
                 System.out.println("Identificador : " + resultSet.getInt("id"));
                 System.out.println("Nombre        : " + resultSet.getString("nombre"));
@@ -23,7 +22,7 @@ public class OperacionesAlumnos {
                 System.out.println("Nota          : " + resultSet.getInt("nota"));
             }
         } catch (SQLException e) {
-            System.out.println("Error al conectar con la base de datos:");
+            System.err.println("Error al conectar con la base de datos:");
             e.printStackTrace();
         }
     }
@@ -35,6 +34,7 @@ public class OperacionesAlumnos {
     public void insertarAlumnoVerificandoID() {
         // Implementación para insertar un alumno verificando ID
     }
+
 
     public void modificarNotaAlumno() {
         // Implementación para modificar la nota de un alumno
