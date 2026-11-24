@@ -6,7 +6,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         OperacionesEmpleados empleados = new OperacionesEmpleados();
-        int opcion = -1;
+        OperacionesAlumnos alumnos = new OperacionesAlumnos();
+        int opcion = - 1;
 
         do {
             System.out.println("\\n========== APLICACIÓN JDBC UNIFICADA ==========");
@@ -42,34 +43,41 @@ public class Main {
             try {
                 opcion = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
-                opcion = -1;
+                opcion = - 1;
             }
 
             switch (opcion) {
-                case 1 -> OperacionesAlumnos.listarTodosAlumnos();
-                case 2 -> OperacionesAlumnos.insertarAlumnoBasico();
-                case 3 -> OperacionesAlumnos.insertarAlumnoVerificandoID();
-                case 4 -> OperacionesAlumnos.modificarNotaAlumno();
-                case 5 -> OperacionesAlumnos.borrarAlumnoPorID();
-                case 6 -> OperacionesAlumnos.listarPrimerRegistro();
-                case 7 -> OperacionesAlumnos.listarUltimoRegistro();
-                case 8 -> OperacionesAlumnos.listarSegundoTercerRegistro();
-                case 9 -> OperacionesAlumnos.listarPenultimoRegistro();
-                case 10 -> OperacionesAlumnos.visualizarColumnas();
-                case 11 -> OperacionesAlumnos.MostrarAlumnosHTML();
-                case 12 -> OperacionesAlumnos.MostrarAlumnosHTMLEncabezadoRojo();
-                case 13 -> OperacionesAlumnos.MostrarAlumnosHTMLFilasColoreadas();
+                case 1 -> alumnos.listarTodosAlumnos();
+                case 2 -> alumnos.insertarAlumnoBasico();
+                case 3 -> alumnos.insertarAlumnoVerificandoID();
+                case 4 -> alumnos.modificarNotaAlumno();
+                case 5 -> alumnos.borrarAlumnoPorID();
+                case 6 -> alumnos.listarPrimerRegistro();
+                case 7 -> alumnos.listarUltimoRegistro();
+                case 8 -> alumnos.listarSegundoTercerRegistro();
+                case 9 -> alumnos.listarPenultimoRegistro();
+                case 10 -> alumnos.visualizarColumnas();
+                case 11 -> alumnos.MostrarAlumnosHTML();
+                case 12 -> alumnos.MostrarAlumnosHTMLEncabezadoRojo();
+                case 13 -> alumnos.MostrarAlumnosHTMLFilasColoreadas();
                 case 14 -> empleados.mostrarEmpleadosDept10();
                 case 15 -> empleados.mostrarEmpleadoMaxSalario();
                 case 16 -> {
                     try {
-                        System.out.print("Emp_no: "); int empNo = Integer.parseInt(sc.nextLine().trim());
-                        System.out.print("Apellido: "); String apellido = sc.nextLine();
-                        System.out.print("Oficio: "); String oficio = sc.nextLine();
-                        System.out.print("Dir: "); int dir = Integer.parseInt(sc.nextLine().trim());
-                        System.out.print("Salario: "); double salario = Double.parseDouble(sc.nextLine().trim());
-                        System.out.print("Comisión: "); int comision = Integer.parseInt(sc.nextLine().trim());
-                        System.out.print("Dept_no: "); int dept = Integer.parseInt(sc.nextLine().trim());
+                        System.out.print("Emp_no: ");
+                        int empNo = Integer.parseInt(sc.nextLine().trim());
+                        System.out.print("Apellido: ");
+                        String apellido = sc.nextLine();
+                        System.out.print("Oficio: ");
+                        String oficio = sc.nextLine();
+                        System.out.print("Dir: ");
+                        int dir = Integer.parseInt(sc.nextLine().trim());
+                        System.out.print("Salario: ");
+                        double salario = Double.parseDouble(sc.nextLine().trim());
+                        System.out.print("Comisión: ");
+                        int comision = Integer.parseInt(sc.nextLine().trim());
+                        System.out.print("Dept_no: ");
+                        int dept = Integer.parseInt(sc.nextLine().trim());
                         empleados.insertarEmpleado(empNo, apellido, oficio, dir, salario, comision, dept);
                     } catch (NumberFormatException e) {
                         System.out.println("Dato numérico no válido.");
