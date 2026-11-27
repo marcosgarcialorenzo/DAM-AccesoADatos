@@ -266,14 +266,17 @@ public class OperacionesAlumnos {
         }
     }
 
+    // OPCION 11
     public void MostrarAlumnosHTML() {
         // Implementación para generar HTML simple de alumnos
     }
 
+    // OPCION 12
     public void MostrarAlumnosHTMLEncabezadoRojo() {
         // Implementación para generar HTML con encabezado rojo
     }
 
+    // OPCION 13
     public void MostrarAlumnosHTMLFilasColoreadas() {
         // Implementación para generar HTML con filas coloreadas
     }
