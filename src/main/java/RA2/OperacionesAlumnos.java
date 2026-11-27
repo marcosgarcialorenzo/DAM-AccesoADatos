@@ -28,22 +28,25 @@ public class OperacionesAlumnos {
     public void insertarAlumnoBasico() {
         try (Connection conn = ConexionAlumnos.getConnection();
              Scanner sc = new Scanner(System.in)) {
-
             String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
-
-            System.out.print("ID: "); int id = sc.nextInt();
-            System.out.print("Nombre: "); String nombre = sc.next();
-            System.out.print("Apellido: "); String apellido = sc.next();
-            System.out.print("Edad: "); int edad = sc.nextInt();
-            System.out.print("Nota: "); double nota = sc.nextDouble();
-
-            ps.setInt(1, id); ps.setString(2, nombre); ps.setString(3, apellido);
-            ps.setInt(4, edad); ps.setDouble(5, nota);
-
+            System.out.print("ID: ");
+            int id = sc.nextInt();
+            System.out.print("Nombre: ");
+            String nombre = sc.next();
+            System.out.print("Apellido: ");
+            String apellido = sc.next();
+            System.out.print("Edad: ");
+            int edad = sc.nextInt();
+            System.out.print("Nota: ");
+            double nota = sc.nextDouble();
+            ps.setInt(1, id);
+            ps.setString(2, nombre);
+            ps.setString(3, apellido);
+            ps.setInt(4, edad);
+            ps.setDouble(5, nota);
             int filas = ps.executeUpdate();
             System.out.println(filas > 0 ? "Alumno insertado correctamente." : "Error al insertar.");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
