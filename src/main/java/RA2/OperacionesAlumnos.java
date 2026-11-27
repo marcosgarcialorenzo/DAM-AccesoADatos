@@ -315,7 +315,58 @@ public class OperacionesAlumnos {
 
     // OPCION 12
     public void MostrarAlumnosHTMLEncabezadoRojo() {
-        // Implementación para generar HTML con encabezado rojo
+
+        String sql = "SELECT * FROM alumnos";
+        File file = new File("tabla_alumnos_encabezado_rojo.html");
+
+        try (Connection conn = ConexionAlumnos.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numeroColumnas = metaData.getColumnCount();
+
+            StringBuilder html = new StringBuilder();
+            html.append("<html>\n<head>\n<title>Tabla de Alumnos</title>\n</head>\n<body>\n");
+            html.append("<table border='1' style='border-collapse: collapse;'>\n");
+
+            // Cabecera en rojo: una celda por columna, con el nombre sacado de los metadatos
+            html.append("<tr>");
+            for (int i = 1; i <= numeroColumnas; i++) {
+                html.append("<th style='padding: 15px; background-color: red; color: white;'>")
+                        .append(metaData.getColumnName(i))
+                        .append("</th>");
+            }
+            html.append("</tr>\n");
+
+            // Filas de datos sin color
+            while (rs.next()) {
+                html.append("<tr>");
+                for (int i = 1; i <= numeroColumnas; i++) {
+                    html.append("<td style='padding: 15px;'>")
+                            .append(rs.getString(i))
+                            .append("</td>");
+                }
+                html.append("</tr>\n");
+            }
+
+            html.append("</table>\n</body>\n</html>");
+
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(html.toString());
+            }
+
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(file.toURI());
+            }
+
+            System.out.println("Tabla generada correctamente con encabezado en rojo.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // OPCION 13
