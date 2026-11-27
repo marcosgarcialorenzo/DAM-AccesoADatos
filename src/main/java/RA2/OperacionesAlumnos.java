@@ -3,56 +3,91 @@ package RA2;
 import java.sql.*;
 import java.util.Scanner;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 public class OperacionesAlumnos {
 
-    private static boolean existeAlumno(Connection conn, int id) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("SELECT id FROM alumnos WHERE id = ?")) {
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
+    public boolean verificarIDExistente(int id) {
+        String sql = "SELECT * FROM alumnos WHERE id = ?";
+        try (Connection conn = ConexionAlumnos.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (rs.getInt("id") == id) {
+                    return true; // El ID ya existe
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false; // Devuelve false si ocurre un error o el ID no existe
     }
 
     // OPCION 1
     public static void listarTodosAlumnos() {
         String sql = "SELECT * FROM alumnos";
 
-        try (Connection connection = ConexionAlumnos.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
-            System.out.println("Conexión CORRECTA a la base de datos MYSQL.");
-            while (resultSet.next()) {
-                System.out.println("Identificador : " + resultSet.getInt("id"));
-                System.out.println("Nombre        : " + resultSet.getString("nombre"));
-                System.out.println("Apellido      : " + resultSet.getString("apellido"));
-                System.out.println("Edad          : " + resultSet.getInt("edad"));
-                System.out.println("Nota          : " + resultSet.getInt("nota"));
+        try (Connection conn = ConexionAlumnos.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                System.out.println("Identificador : " + rs.getInt("id"));
+                System.out.println("Nombre        : " + rs.getString("nombre"));
+                System.out.println("Apellido      : " + rs.getString("apellido"));
+                System.out.println("Edad          : " + rs.getInt("edad"));
+                System.out.println("Nota          : " + rs.getInt("nota"));
             }
+
         } catch (SQLException e) {
-            System.err.println("Error al conectar con la base de datos:");
             e.printStackTrace();
         }
     }
 
     // OPCION 2
     public void insertarAlumnoBasico() {
+        try (Connection conn = ConexionAlumnos.getConnection();
+             Scanner sc = new Scanner(System.in)) {
+
+            String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            System.out.print("ID: ");
+            int id = sc.nextInt();
+            System.out.print("Nombre: ");
+            String nombre = sc.next();
+            System.out.print("Apellido: ");
+            String apellido = sc.next();
+            System.out.print("Edad: ");
+            int edad = sc.nextInt();
+            System.out.print("Nota: ");
+            double nota = sc.nextDouble();
+
+            ps.setInt(1, id);
+            ps.setString(2, nombre);
+            ps.setString(3, apellido);
+            ps.setInt(4, edad);
+            ps.setDouble(5, nota);
+
+            int filas = ps.executeUpdate();
+            System.out.println(filas > 0 ? "Alumno insertado correctamente." : "Error al insertar.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //OPCION 3
+    public void insertarAlumnoVerificandoID() {
         String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConexionAlumnos.getConnection()) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Conexión establecida correctamente a la base de datos.");
             // Validación 1: el ID no puede existir ya
+            System.out.print("Ingrese el ID del alumno: ");
             int id;
-            while (true) {
-                System.out.println("Ingrese el ID del alumno: ");
-                id = sc.nextInt();
-                if (existeAlumno(conn, id)) {
-                    System.out.println("Error: Hay un alumno con ese ID " + id);
-                } else {
-                    break;
-                }
+            id = sc.nextInt();
+            if (verificarIDExistente(id)) {
+                System.out.println("Error: El ID ya existe en la base de datos. Por favor, ingrese un ID diferente.");
+                return; // Salir del método si el ID ya existe
             }
             sc.nextLine(); // Limpiar el buffer de entrada
             System.out.print("Ingrese el nombre del alumno: ");
@@ -61,15 +96,8 @@ public class OperacionesAlumnos {
             String apellido = sc.nextLine().trim();
             // Validación 2: la edad debe tener como máximo dos dígitos
             int edad;
-            while (true) {
-                System.out.println("Ingrese la edad del alumno: ");
-                edad = sc.nextInt();
-                if (edad < 0 || edad > 99) {
-                    System.out.println("Error: La edad debe tener como máximo dos dígitos.");
-                } else {
-                    break;
-                }
-            }
+            System.out.println("Ingrese la edad del alumno: ");
+            edad = sc.nextInt();
             sc.nextLine(); // Limpiar el buffer de entrada
             System.out.println("Ingrese la nota del alumno: ");
             int nota = sc.nextInt();
