@@ -3,6 +3,8 @@ package RA2;
 import java.sql.*;
 import java.util.Scanner;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 public class OperacionesAlumnos {
 
     private static boolean existeAlumno(Connection conn, int id) throws SQLException {
@@ -37,43 +39,14 @@ public class OperacionesAlumnos {
 
     // OPCION 2
     public void insertarAlumnoBasico() {
-        try (Connection conn = ConexionAlumnos.getConnection();
-             Scanner sc = new Scanner(System.in)) {
-            String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            System.out.print("ID: ");
-            int id = sc.nextInt();
-            System.out.print("Nombre: ");
-            String nombre = sc.next();
-            System.out.print("Apellido: ");
-            String apellido = sc.next();
-            System.out.print("Edad: ");
-            int edad = sc.nextInt();
-            System.out.print("Nota: ");
-            double nota = sc.nextDouble();
-            ps.setInt(1, id);
-            ps.setString(2, nombre);
-            ps.setString(3, apellido);
-            ps.setInt(4, edad);
-            ps.setDouble(5, nota);
-            int filas = ps.executeUpdate();
-            System.out.println(filas > 0 ? "Alumno insertado correctamente." : "Error al insertar.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //OPCION 3
-    public void insertarAlumnoVerificandoID() {
         String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConexionAlumnos.getConnection()) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Conexión establecida correctamente a la base de datos.");
-
             // Validación 1: el ID no puede existir ya
             int id;
             while (true) {
-                System.out.println("Introduce el ID del alumno:");
+                System.out.println("Ingrese el ID del alumno: ");
                 id = sc.nextInt();
                 if (existeAlumno(conn, id)) {
                     System.out.println("Error: Hay un alumno con ese ID " + id);
@@ -81,8 +54,38 @@ public class OperacionesAlumnos {
                     break;
                 }
             }
+            sc.nextLine(); // Limpiar el buffer de entrada
+            System.out.print("Ingrese el nombre del alumno: ");
+            String nombre = sc.nextLine().trim();
+            System.out.print("Ingrese los apellidos del alumno: ");
+            String apellido = sc.nextLine().trim();
+            // Validación 2: la edad debe tener como máximo dos dígitos
+            int edad;
+            while (true) {
+                System.out.println("Ingrese la edad del alumno: ");
+                edad = sc.nextInt();
+                if (edad < 0 || edad > 99) {
+                    System.out.println("Error: La edad debe tener como máximo dos dígitos.");
+                } else {
+                    break;
+                }
+            }
+            sc.nextLine(); // Limpiar el buffer de entrada
+            System.out.println("Ingrese la nota del alumno: ");
+            int nota = sc.nextInt();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ps.setString(2, nombre);
+                ps.setString(3, apellido);
+                ps.setInt(4, edad);
+                ps.setInt(5, nota);
+                if (ps.executeUpdate() > 0) {
+                    System.out.println("El registro ha sido insertado correctamente.");
+                }
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error al insertar en la base de datos:");
+            e.printStackTrace();
         }
     }
 
