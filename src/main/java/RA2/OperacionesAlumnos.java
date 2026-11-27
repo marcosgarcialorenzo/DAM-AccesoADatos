@@ -145,7 +145,24 @@ public class OperacionesAlumnos {
 
     // OPCION 5
     public void borrarAlumnoPorID() {
-        // Implementación para borrar un alumno por ID
+        String sql = "DELETE FROM alumnos WHERE ID = ?";
+        try (Connection conn = ConexionAlumnos.getConnection()) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Conexión establecida correctamente a la base de datos.");
+            System.out.print("Ingrese el ID del alumno: ");
+            int id = sc.nextInt();
+            if (! verificarIDExistente(id)) {
+                System.out.println("Error: El ID no existe en la base de datos. Por favor ingrese un ID diferente.");
+                return; // Salir del método si el ID no existe
+            }
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                System.out.println(ps.executeUpdate() > 0 ? "Alumno eliminado correctamente." : "Error al eliminar el alumno.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al insertar en la base de datos:");
+            e.printStackTrace();
+        }
     }
 
     // OPCION 6
