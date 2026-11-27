@@ -119,7 +119,30 @@ public class OperacionesAlumnos {
 
     // OPCION 4
     public void modificarNotaAlumno() {
-        // Implementación para modificar la nota de un alumno
+        String sql = "UPDATE alumnos SET NOTA = ? WHERE ID = ?";
+        try (Connection conn = ConexionAlumnos.getConnection()) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Conexión establecida correctamente a la base de datos.");
+            System.out.print("Ingrese el ID del alumno: ");
+            int id = sc.nextInt();
+            if (verificarIDExistente(id)) {
+                System.out.println("Error: El ID ya existe en la base de datos. Por favor, ingrese un ID diferente.");
+                return; // Salir del método si el ID ya existe
+            }
+            sc.nextLine(); // Limpiar el buffer de entrada
+            System.out.println("Ingrese la nota del alumno: ");
+            int nota = sc.nextInt();
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ps.setInt(2, nota);
+                if (ps.executeUpdate() > 0) {
+                    System.out.println("El registro ha sido insertado correctamente.");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al insertar en la base de datos:");
+            e.printStackTrace();
+        }
     }
 
     // OPCION 5
