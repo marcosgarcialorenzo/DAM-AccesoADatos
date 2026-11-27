@@ -35,6 +35,7 @@ public class OperacionesAlumnos {
         }
     }
 
+    // OPCION 2
     public void insertarAlumnoBasico() {
         try (Connection conn = ConexionAlumnos.getConnection();
              Scanner sc = new Scanner(System.in)) {
@@ -62,6 +63,7 @@ public class OperacionesAlumnos {
         }
     }
 
+    //OPCION 3
     public void insertarAlumnoVerificandoID() {
         String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConexionAlumnos.getConnection()) {
@@ -84,30 +86,37 @@ public class OperacionesAlumnos {
         }
     }
 
+    // OPCION 4
     public void modificarNotaAlumno() {
         // Implementación para modificar la nota de un alumno
     }
 
+    // OPCION 5
     public void borrarAlumnoPorID() {
         // Implementación para borrar un alumno por ID
     }
 
+    // OPCION 6
     public void listarPrimerRegistro() {
         // Implementación para listar el primer registro
     }
 
+    // OPCION 7
     public void listarUltimoRegistro() {
         // Implementación para listar el último registro
     }
 
+    // OPCION 8
     public void listarSegundoTercerRegistro() {
         // Implementación para listar el segundo y tercer registro
     }
 
+    // OPCION 9
     public void listarPenultimoRegistro() {
         // Implementación para listar el penúltimo registro
     }
 
+    // OPCION 10
     public void visualizarColumnas() {
         // Implementación para visualizar las columnas de la tabla alumnos
     }
