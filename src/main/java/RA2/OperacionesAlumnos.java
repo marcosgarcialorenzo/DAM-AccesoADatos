@@ -135,9 +135,7 @@ public class OperacionesAlumnos {
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, id);
                 ps.setInt(2, nota);
-                if (ps.executeUpdate() > 0) {
-                    System.out.println("El registro ha sido insertado correctamente.");
-                }
+                System.out.println(ps.executeUpdate() > 0 ? "Nota modificada correctamente." : "Error al modificar la nota.");
             }
         } catch (SQLException e) {
             System.out.println("Error al insertar en la base de datos:");
