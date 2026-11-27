@@ -5,6 +5,16 @@ import java.util.Scanner;
 
 public class OperacionesAlumnos {
 
+    private static boolean existeAlumno(Connection conn, int id) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement("SELECT id FROM alumnos WHERE id = ?")) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    // OPCION 1
     public static void listarTodosAlumnos() {
         String sql = "SELECT * FROM alumnos";
 
@@ -53,9 +63,26 @@ public class OperacionesAlumnos {
     }
 
     public void insertarAlumnoVerificandoID() {
-        // Implementación para insertar un alumno verificando ID
-    }
+        String sql = "INSERT INTO alumnos (id, nombre, apellido, edad, nota) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = ConexionAlumnos.getConnection()) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Conexión establecida correctamente a la base de datos.");
 
+            // Validación 1: el ID no puede existir ya
+            int id;
+            while (true) {
+                System.out.println("Introduce el ID del alumno:");
+                id = sc.nextInt();
+                if (existeAlumno(conn, id)) {
+                    System.out.println("Error: Hay un alumno con ese ID " + id);
+                } else {
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void modificarNotaAlumno() {
         // Implementación para modificar la nota de un alumno
