@@ -207,7 +207,22 @@ public class OperacionesAlumnos {
 
     // OPCION 8
     public void listarSegundoTercerRegistro() {
-        // Implementación para listar el segundo y tercer registro
+        String sql = "SELECT * FROM alumnos ORDER BY id ASC LIMIT 2 OFFSET 1";
+        try (Connection conn = ConexionAlumnos.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            if (rs.next()) {
+                System.out.println("Identificador : " + rs.getInt("id"));
+                System.out.println("Nombre        : " + rs.getString("nombre"));
+                System.out.println("Apellido      : " + rs.getString("apellido"));
+                System.out.println("Edad          : " + rs.getInt("edad"));
+                System.out.println("Nota          : " + rs.getInt("nota"));
+            } else {
+                System.out.println("La tabla alumnos está vacía.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // OPCION 9
