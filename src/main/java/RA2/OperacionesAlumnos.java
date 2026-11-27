@@ -1,5 +1,9 @@
 package RA2;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -268,7 +272,45 @@ public class OperacionesAlumnos {
 
     // OPCION 11
     public void MostrarAlumnosHTML() {
-        // Implementación para generar HTML simple de alumnos
+        String sql = "SELECT * FROM alumnos";
+        File file = new File("tabla_alumnos_generada.html");
+
+        try (Connection conn = ConexionAlumnos.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            StringBuilder html = new StringBuilder();
+            html.append("<html>\n<head>\n<title>Tabla de Alumnos</title>\n</head>\n<body>\n");
+            html.append("<table border='1' style='border-collapse: collapse;'>\n");
+            /* Codigo par Imprimir los datos */
+            html.append("<tr>")
+                    .append("<th style='padding: 15px;'>Identificador</th>")
+                    .append("<th style='padding: 15px;'>Nombre</th>")
+                    .append("<th style='padding: 15px;'>Apellido</th>")
+                    .append("<th style='padding: 15px;'>Edad</th>")
+                    .append("<th style='padding: 15px;'>Nota</th>")
+                    .append("</tr>\n");
+            while (rs.next()) {
+                html.append("<tr>")
+                        .append("<td style='padding: 15px;'>").append(rs.getInt("id")).append("</td>")
+                        .append("<td style='padding: 15px;'>").append(rs.getString("nombre")).append("</td>")
+                        .append("<td style='padding: 15px;'>").append(rs.getString("apellido")).append("</td>")
+                        .append("<td style='padding: 15px;'>").append(rs.getInt("edad")).append("</td>")
+                        .append("<td style='padding: 15px;'>").append(rs.getInt("nota")).append("</td>")
+                        .append("</tr>\n");
+            }
+            html.append("</table>\n</body>\n</html>");
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(html.toString());
+            }
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(file.toURI());
+            }
+            System.out.println("La tabla alumnos se ha generado correctamente y se ha abierto en el navegador.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // OPCION 12
