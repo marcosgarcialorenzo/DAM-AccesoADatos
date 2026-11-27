@@ -247,7 +247,23 @@ public class OperacionesAlumnos {
 
     // OPCION 10
     public void visualizarColumnas() {
-        // Implementación para visualizar las columnas de la tabla alumnos
+        String sql = "SELECT * FROM alumnos";
+        try (Connection conn = ConexionAlumnos.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            ResultSetMetaData resultado = rs.getMetaData();
+            int numerocolumnas = resultado.getColumnCount();
+            System.out.println("Número de columnas recuperadas: " + numerocolumnas);
+            for (int i = 1; i <= numerocolumnas; i++) {
+                System.out.println("Columna " + i + ":");
+                System.out.println("  Nombre : " + resultado.getColumnName(i));
+                System.out.println("  Tipo   : " + resultado.getColumnTypeName(i));
+                System.out.println("  ¿Puede ser nula? : " + (resultado.isNullable(i) == ResultSetMetaData.columnNoNulls ? "NO" : "SI"));
+                System.out.println("  Máximo ancho de la columna: " + resultado.getColumnDisplaySize(i));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void MostrarAlumnosHTML() {
